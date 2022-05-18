@@ -20,7 +20,6 @@ public class DrawCards : MonoBehaviour
     public void OnClick() 
     {
         int max = 5 - PlayerArea.transform.childCount;
-        Debug.Log(max.ToString());
         for (var i = 0; i < max; i++){
             GameObject PlayerCard = Instantiate(Card1, new Vector3(0,0,0), Quaternion.identity);
             PlayerCard.transform.SetParent(PlayerArea.transform, false);
