@@ -9,6 +9,7 @@ public class Card1 : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     
     System.Random rnd = new System.Random();
     public TextMeshProUGUI text;
+    public int value;
 
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
@@ -23,7 +24,8 @@ public class Card1 : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     void Start()
     {
         Debug.Log(text);
-        text.text = rnd.Next(3,10).ToString();
+        value = rnd.Next(3,10);
+        text.text = value.ToString();
     }
 
     public void OnBeginDrag(PointerEventData eventData){
