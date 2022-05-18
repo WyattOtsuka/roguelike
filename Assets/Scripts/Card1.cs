@@ -44,7 +44,10 @@ public class Card1 : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public void OnEndDrag(PointerEventData eventData){
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1;
-        canvasGroup.blocksRaycasts = true;
+        if (this.transform.parent.GetComponent<EnemyArea>() == null) {
+            Debug.Log("Not in enemy area");
+            canvasGroup.blocksRaycasts = true;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData){
