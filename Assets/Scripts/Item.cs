@@ -10,17 +10,13 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     private CanvasGroup canvasGroup;
 
     private void Awake() {
-        canvas = GameObject.FindGameObjectWithTag("MainCanvas").GetComponent<Canvas>();
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void OnBeginDrag(PointerEventData eventData){
-        Debug.Log("BeginDrag");
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
-        eventData.pointerDrag.transform.SetParent(canvas.transform, true);
-
     }
 
     public void OnDrag(PointerEventData eventData){
@@ -29,9 +25,7 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData){
         canvasGroup.alpha = 1;
-        if (this.transform.parent.GetComponent<EnemyArea>() == null) {
-            canvasGroup.blocksRaycasts = true;
-        }
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData){
