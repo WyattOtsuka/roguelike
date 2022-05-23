@@ -9,6 +9,7 @@ public class NavBar : MonoBehaviour
     [SerializeField] private Canvas canvas;
     public GameObject MapPanel;
     public GameObject InventoryPanel;
+    public GameObject SettingsPanel;
 
     void Start()
     {
@@ -20,15 +21,21 @@ public class NavBar : MonoBehaviour
     public void OnMapClick() {
         MapPanel.SetActive(!MapPanel.activeSelf);
         InventoryPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
+
     }
     public void OnInventoryClick() {
         InventoryPanel.SetActive(!InventoryPanel.activeSelf);
         MapPanel.SetActive(false);
+        SettingsPanel.SetActive(false);
+
     }
     public void OnStatsClick() {
 
     }
     public void OnSettingsClick () {
-
+        SettingsPanel.SetActive(!SettingsPanel.activeSelf);
+        MapPanel.SetActive(false);
+        InventoryPanel.SetActive(false);
     }
 }
