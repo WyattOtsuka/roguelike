@@ -8,8 +8,11 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    private Vector3 prevPos;
+    public bool dropped = false;
 
     private void Awake() {
+        prevPos = this.transform.position;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -26,6 +29,12 @@ public class Item : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     public void OnEndDrag(PointerEventData eventData){
         canvasGroup.alpha = 1;
         canvasGroup.blocksRaycasts = true;
+        if (dropped) {
+            dropped = false;
+            prevPos = this.transform.position;
+        } else {
+            this.transform.position = prevPos;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData){

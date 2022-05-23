@@ -9,9 +9,9 @@ public class ItemDragDrop : MonoBehaviour, IPointerDownHandler, IDropHandler
     }
 
     public void OnDrop(PointerEventData eventData){
-        Debug.Log("On Drop");
         if(eventData.pointerDrag != null) {
             eventData.pointerDrag.transform.position = this.transform.position;
+            eventData.pointerDrag.GetComponent<Item>().dropped = true;
         }
     }
 }
