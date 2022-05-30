@@ -47,3 +47,6 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 *.mdb.meta
+
+# Saved Test data
+[Aa]ssets/saves
