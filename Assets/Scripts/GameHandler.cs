@@ -38,6 +38,11 @@ public class GameHandler : MonoBehaviour
         HPText.text = hp + "/" + maxHP;
         ExpText.text = exp.ToString();
         LevelText.text = "Level " + level.ToString();
+
+        if (exp >= 100) {
+            level += exp / 100;
+            exp = exp % 100;
+        }
     }
 
     public void save() {
@@ -63,6 +68,10 @@ public class GameHandler : MonoBehaviour
 
     public void takeDamge(int dmg) {
         hp -= dmg;
+    }
+
+    public void addExp(int expGain) {
+        exp += expGain;
     }
 
     private class saveObject {
