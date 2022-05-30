@@ -1,15 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameHandler : MonoBehaviour
 {
     public int hp;
+    public int maxHP;
     public int level;
     public int exp;
 
+    public TextMeshProUGUI HPText;
+    public TextMeshProUGUI ExpText;
+    public TextMeshProUGUI LevelText;
+
     void Awake() {
         SaveSystem.Init();
+        hp = 100;
+        maxHP = 100;
+        exp = 0;
+        level = 1;
+
+        
     }
 
     // Update is called once per frame
@@ -21,6 +33,11 @@ public class GameHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) {
             load();
         }
+
+        // set texts
+        HPText.text = hp + "/" + maxHP;
+        ExpText.text = exp.ToString();
+        LevelText.text = "Level " + level.ToString();
     }
 
     public void save() {
@@ -41,6 +58,11 @@ public class GameHandler : MonoBehaviour
             level = s.level;
             exp = s.exp;
         }
+    }
+
+
+    public void takeDamge(int dmg) {
+        hp -= dmg;
     }
 
     private class saveObject {

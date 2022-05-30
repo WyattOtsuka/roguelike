@@ -6,12 +6,17 @@ using UnityEngine.EventSystems;
 public class EnemyArea : MonoBehaviour, IDropHandler
 {
     public Enemy enemy1;
+    public Canvas canvas;
+    
 
     public void OnDrop(PointerEventData eventData) {
-        Debug.Log("OnDrop");
+        // Deal Damage
         Card1 card = eventData.pointerDrag.GetComponent<Card1>();
         card.transform.SetParent(this.transform, false);
         enemy1.UpdateHealth(-card.value);
-        Debug.Log(enemy1.health.ToString());
+
+        //Take Damage
+        canvas.GetComponent<GameHandler>().takeDamge(5);
+    
     }
 }
